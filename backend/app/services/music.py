@@ -26,6 +26,8 @@ async def generate_music(lyrics: str, language: str) -> str:
     filename = f"{file_uuid}.mp3"
     filepath = os.path.join("generated", filename)
 
+    os.makedirs("generated", exist_ok=True)
+
     try:
         communicate = edge_tts.Communicate(cleaned_lyrics, voice)
         await communicate.save(filepath)

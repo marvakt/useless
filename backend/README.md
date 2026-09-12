@@ -1,6 +1,6 @@
-# Ente Ponnu Suhruthe - Backend
+# Ente Ponnu Aliya - Backend
 
-This is the FastAPI backend for the "Ente Ponnu Suhruthe" hackathon project.
+This is the FastAPI backend for the "Ente Ponnu Aliya" hackathon project.
 
 ## Setup Instructions
 

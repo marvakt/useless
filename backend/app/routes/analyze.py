@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from typing import Optional
 from app.services.gemini import generate_roast_lyrics
+from app.services.music import generate_music
 
 router = APIRouter()
 
@@ -40,12 +41,22 @@ async def analyze_input(
             image_mime=image_mime
         )
         
+        # 3. Generate Music (TTS)
+        try:
+            audio_url = await generate_music(
+                lyrics=gemini_result.get("lyrics", ""),
+                language=language
+            )
+        except Exception as e:
+            print(f"Music Generation Failed: {e}")
+            audio_url = None
+
         return {
             "success": True,
             "language": language,
             "lyrics": gemini_result.get("lyrics", ""),
             "motivation": gemini_result.get("motivation", ""),
-            "audioUrl": None  # Lyria integration comes later
+            "audioUrl": audio_url
         }
     except Exception as e:
         print(f"Error in /analyze: {e}")

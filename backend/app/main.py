@@ -5,8 +5,8 @@ from fastapi.staticfiles import StaticFiles
 from app.routes import analyze, generate_song
 
 app = FastAPI(
-    title="Ente Ponnu Suhruthe API",
-    description="Backend for the Savage Best Friend Hackathon Project",
+    title="Ente Ponnu Aliya API",
+    description="Backend for analyzing voice inputs and generating roasts",
     version="1.0.0"
 )
 
