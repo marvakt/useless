@@ -69,8 +69,8 @@ For Software:
 ![Screenshot2](./screenshot/voice%20record.png)
 *The Voice Recorder*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*The AI generating the savage Malayalam rap song*
+### 🎥 Watch the Demo
+[Click here to watch the full demo video](./video.mp4)
 
 ---
 Made with ❤️ at TinkerHub Useless Projects
