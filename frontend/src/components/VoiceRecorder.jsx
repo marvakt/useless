@@ -71,7 +71,7 @@ const VoiceRecorder = ({ onRecordingComplete, isRecording, setIsRecording }) => 
         >
           <div className="absolute inset-0 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors"></div>
           <Mic className="w-7 h-7" />
-          🎙️ PARAYEDA MONE
+          PARAYEDA MONE
         </button>
       ) : (
         <div className="flex flex-col items-center">

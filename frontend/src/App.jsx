@@ -25,47 +25,28 @@ function App() {
     setApiError(null);
 
     try {
-      // 1. Get the Lyrics and Motivation from Gemini
       const formData = new FormData();
       formData.append('audio', blob, 'recording.webm');
       formData.append('language', language);
 
-      const analyzeResponse = await fetch('http://127.0.0.1:8000/analyze', {
+      const response = await fetch('http://127.0.0.1:8000/analyze', {
         method: 'POST',
         body: formData,
       });
 
-      const analyzeData = await analyzeResponse.json();
+      const data = await response.json();
 
-      if (!analyzeResponse.ok) {
-        throw new Error(analyzeData.detail || 'Failed to analyze text with Gemini');
-      }
-
-      // 2. Generate the Audio Song from the lyrics
-      const songResponse = await fetch('http://127.0.0.1:8000/generate-song', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          lyrics: analyzeData.lyrics,
-          language: analyzeData.language
-        }),
-      });
-
-      const songData = await songResponse.json();
-
-      if (!songResponse.ok) {
-        throw new Error(songData.detail || 'Failed to generate song audio');
+      if (!response.ok) {
+        throw new Error(data.detail || 'Failed to process audio');
       }
 
       setApiResult({
         roast: {
-          lyrics: analyzeData.lyrics,
-          audioUrl: `http://127.0.0.1:8000${songData.audioUrl}`, // Full URL to the static file
+          lyrics: data.lyrics,
+          audioUrl: data.audioUrl ? `http://127.0.0.1:8000${data.audioUrl}` : '/assets/sounds/mock-song.mp3',
           title: "🚨 Roast Alert"
         },
-        motivation: analyzeData.motivation
+        motivation: data.motivation
       });
       setAppState('RESULT');
     } catch (err) {

@@ -5,22 +5,27 @@ const AudioPlayer = ({ audioUrl, onEnded }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const audioRef = useRef(null);
+  const beatRef = useRef(null);
 
   useEffect(() => {
     // For mock purposes: if no real audioUrl is provided, we simulate playback
     if (!audioUrl || audioUrl === '/assets/sounds/mock-song.mp3') {
       let interval;
       if (isPlaying) {
+        if (beatRef.current) beatRef.current.play();
         interval = setInterval(() => {
           setProgress(p => {
             if (p >= 100) {
               setIsPlaying(false);
+              if (beatRef.current) beatRef.current.pause();
               if (onEnded) onEnded();
               return 0;
             }
             return p + 2; // Simulate 50 seconds song
           });
         }, 1000);
+      } else {
+        if (beatRef.current) beatRef.current.pause();
       }
       return () => clearInterval(interval);
     }
@@ -31,8 +36,10 @@ const AudioPlayer = ({ audioUrl, onEnded }) => {
     if (audioRef.current && audioUrl && audioUrl !== '/assets/sounds/mock-song.mp3') {
       if (isPlaying) {
         audioRef.current.pause();
+        if (beatRef.current) beatRef.current.pause();
       } else {
         audioRef.current.play();
+        if (beatRef.current) beatRef.current.play();
       }
     }
   };
@@ -48,16 +55,28 @@ const AudioPlayer = ({ audioUrl, onEnded }) => {
   const handleEnded = () => {
     setIsPlaying(false);
     setProgress(0);
+    if (beatRef.current) {
+      beatRef.current.pause();
+      beatRef.current.currentTime = 0; // reset beat to start
+    }
     if (onEnded) onEnded();
   };
 
   return (
     <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-700 mt-6 shadow-inner">
+      {/* Track 1: The Speech */}
       <audio 
         ref={audioRef} 
         src={audioUrl} 
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
+        className="hidden"
+      />
+      {/* Track 2: The Hip-Hop Beat (Loops) */}
+      <audio 
+        ref={beatRef} 
+        src="/assets/sounds/beat.wav"
+        loop
         className="hidden"
       />
       
