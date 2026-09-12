@@ -19,6 +19,10 @@ function App() {
   const [apiResult, setApiResult] = useState(null);
   const [apiError, setApiError] = useState(null);
 
+  const API_BASE_URL = import.meta.env.DEV 
+    ? 'http://127.0.0.1:8000' 
+    : 'https://useless-nwo9.onrender.com';
+
   const handleRecordingComplete = async (blob) => {
     setAudioBlob(blob);
     setAppState('PROCESSING');
@@ -29,7 +33,7 @@ function App() {
       formData.append('audio', blob, 'recording.webm');
       formData.append('language', language);
 
-      const response = await fetch('https://useless-nwo9.onrender.com/analyze', {
+      const response = await fetch(`${API_BASE_URL}/analyze`, {
         method: 'POST',
         body: formData,
       });
@@ -43,7 +47,7 @@ function App() {
       setApiResult({
         roast: {
           lyrics: data.lyrics,
-          audioUrl: data.audioUrl ? `https://useless-nwo9.onrender.com${data.audioUrl}` : '/assets/sounds/mock-song.mp3',
+          audioUrl: data.audioUrl ? `${API_BASE_URL}${data.audioUrl}` : '/assets/sounds/mock-song.mp3',
           title: "🚨 Roast Alert"
         },
         motivation: data.motivation
