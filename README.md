@@ -18,7 +18,7 @@ An AI Best Friend that listens to your problems and brutally roasts you with a c
 ### The Problem (that doesn't exist)
 People complain about their problems way too much and need someone to humble them through the medium of Savage Malayalam poetry.
 
-### The Solution (that nobody asked for)
+### The Solution
 We record your complaints, send them to Google's Gemini 3.6 Flash AI to generate a brutal Malayalam roast, and then use Microsoft Edge TTS to literally "sing" the roast back to you.
 
 ## Technical Details
