@@ -8,9 +8,9 @@
 
 
 ### Team Members
-- Team Lead: Marva - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Fathima marva kt - Adi Shankara Institute of Engineering and Technology
+- Member 2: Surya sunil - Adi Shankara Institute of Engineering and Technology
+
 
 ### Project Description
 An AI Best Friend that listens to your problems and brutally roasts you with a custom-generated savage Malayalam rap song before offering genuine motivation.
@@ -26,8 +26,8 @@ We record your complaints, send them to Google's Gemini 3.6 Flash AI to generate
 For Software:
 - HTML, CSS, JavaScript, Python
 - React, Vite, Tailwind CSS v4, FastAPI
-- Google Gemini API (gemini-3.6-flash), Edge-TTS, Uvicorn
-- [Tools used]
+- Google Gemini API , Edge-TTS, Uvicorn
+- Git, GitHub, VS Code, Browser
 
 For Hardware:
 - N/A
@@ -63,10 +63,10 @@ npm run dev
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
+![Screenshot1](./screenshot/home%20screen.png)
 *The Home Screen*
 
-![Screenshot2](Add screenshot 2 here with proper name)
+![Screenshot2](./screenshot/voice%20record.png)
 *The Voice Recorder*
 
 ![Screenshot3](Add screenshot 3 here with proper name)
